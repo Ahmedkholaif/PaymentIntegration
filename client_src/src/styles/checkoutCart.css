@@ -1,0 +1,19 @@
+.collection{
+    display: flexbox;
+    flex-direction: row;
+    border:1px rgb(138, 138, 175) solid ;
+    /* flex-wrap: wrap; */
+    /* border: none; */
+    min-height: 30rem;
+}
+.collection-item{
+    background-color: red;
+    /* flex: 1; */
+    flex-basis: 30%;
+    /* min-height: 100px; */
+    border:1px rgb(138, 138, 175) solid ;
+}
+
+form{
+    margin-bottom: 5%;
+}
