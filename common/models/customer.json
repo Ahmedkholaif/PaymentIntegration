@@ -1,0 +1,37 @@
+{
+  "name": "Customer",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "shopCart": {
+      "type": "array",
+      "default": []
+    }
+  },
+  "validations": [],
+  "relations": {
+    "bills": {
+      "type": "hasMany",
+      "model": "Bill",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": [
+        "shopcart",
+        "shopcartcount",
+        "addtocart",
+        "generatepayment",
+        "editcart"
+      ]
+    }
+  ],
+  "methods": {}
+}
