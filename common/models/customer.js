@@ -62,6 +62,7 @@ module.exports = function (Customer) {
     Customer.generatepayment = async function (id, req, ctx) {
         const Product = Customer.app.models.Product;
         const Bill = Customer.app.models.Bill;
+        const {sid} = require('../../server/config');
 
         const user = await Customer.findById(req.accessToken.userId, { fields: ['shopCart'] });
         const { shopCart: cart } = user;
@@ -98,7 +99,7 @@ module.exports = function (Customer) {
             ...params1,
             userId: id,
             billId,
-            sid: '901411935',
+            sid,
             mode: '2CO',
             mycustomkey: 'customid',
             card_holder_name: 'Checkout Shopper',

@@ -22,15 +22,13 @@ module.exports = function (server) {
     const Bill = server.models.Bill;
     const Customer = server.models.Customer;
     const { key, total, sid, order_number, billid, userid } = req.query;
+    const {secret} = require('../config');
 
-    console.log(req.query);
     const val = cr.createHash('md5')
-      .update(`ZjQ5ODM5MmEtMTExOC00NDY5LWFlZjgtMmZiODNjZTlhOTM4${sid}${order_number}${total}`)
+      .update(`${secret}${sid}${order_number}${total}`)
       .digest('hex').toUpperCase();
 
-    console.log({ val, key });
-
-    if (key === val) {
+    if (key === val) { 
       try {
         const bill = await Bill.findById(billid);
         if (bill.total === +total) {
@@ -39,13 +37,14 @@ module.exports = function (server) {
           const user = await Customer.findById(bill.customerId);
           user.shopCart = [];
           await user.save();
+          res.redirect('http://localhost:3001/thanks');
         }
       } catch (error) {
         console.log(error);
       }
     }
+    res.redirect('http://localhost:3001/error');
     debugger;
-    res.redirect('http://localhost:3001/thanks');
   });
   server.use(router);
 };
