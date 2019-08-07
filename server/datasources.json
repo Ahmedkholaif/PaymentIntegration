@@ -2,7 +2,7 @@
   "db": {
     "host": "localhost",
     "port": 27017,
-    "url": "",
+    "url": "mongodb://db:27017/payment",
     "database": "payment",
     "password": "",
     "name": "db",
